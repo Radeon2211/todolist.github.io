@@ -1,0 +1,45 @@
+{
+  "name": "chapter_19",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch:sass": "node-sass sass/main.scss dist/assets/style.css -w",
+    "serve": "webpack-dev-server --mode development",
+    "start": "npm-run-all --parallel serve watch:sass",
+    "compile:sass": "node-sass sass/main.scss buildcss/style.comp.css",
+    "concat:css": "concat -o buildcss/style.concat.css file1 file2",
+    "prefix:css": "postcss --use autoprefixer -b 'last 10 versions' buildcss/style.comp.css -o buildcss/style.prefix.css",
+    "compress:css": "node-sass buildcss/style.prefix.css dist/assets/style.css --output-style compressed",
+    "build:css": "npm-run-all compile:sass prefix:css compress:css",
+    "build:js": "node_modules/.bin/webpack --mode production",
+    "build": "npm-run-all build:css build:js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "autoprefixer": "^9.7.4",
+    "babel-loader": "^8.0.6",
+    "concat": "^1.0.3",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.18.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "node-sass": "^4.13.1",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^7.1.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "dependencies": {
+    "core-js": "^3.6.4",
+    "regenerator-runtime": "^0.13.3"
+  },
+  "homepage": "https://github.com/Radeon2211/todolist"
+}

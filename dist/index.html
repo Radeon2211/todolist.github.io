@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ToDo List</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  sdfsdfsdf
+
+
+  <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-functions.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyBHRnGHyuwnroGxIOue9LImi4DxmTmfgE0",
+      authDomain: "todo-list-9a348.firebaseapp.com",
+      databaseURL: "https://todo-list-9a348.firebaseio.com",
+      projectId: "todo-list-9a348",
+      storageBucket: "todo-list-9a348.appspot.com",
+      messagingSenderId: "624641180642",
+      appId: "1:624641180642:web:22a6a655e98ad0b5d02fbb",
+      measurementId: "G-LZ0W6PT6WK"
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    // Auth & Firestore & Functions references
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const functions = firebase.functions();
+  </script>
+
+  <script src="assets/bundle.js"></script>
+</body>
+</html>
