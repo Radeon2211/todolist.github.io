@@ -1,0 +1,55 @@
+.btn {
+  background: transparent;
+  border-radius: 2px;
+  color: var(--color-white-1);
+  cursor: pointer;
+  font-family: 'Baloo Da 2', cursive;
+
+  &--small {
+    font-size: 2.2rem;
+    padding: .8rem 2.1rem;
+  }
+
+  &--big {
+    font-size: 3.3rem;
+    padding: 1.2rem 3.2rem;
+  }
+
+  &--empty-red {
+    color: var(--color-red-2);
+
+    @supports (background-clip: text) or (-webkit-background-clip: text) {
+      -webkit-background-clip: text;
+      background-clip: text;
+      background-image: linear-gradient(to right, var(--color-red-1), var(--color-red-3));
+      color: transparent;
+    }
+  }
+
+  &--empty-blue {
+    color: var(--color-blue-2);
+
+    @supports (background-clip: text) or (-webkit-background-clip: text) {
+      -webkit-background-clip: text;
+      background-clip: text;
+      background-image: linear-gradient(to right, var(--color-blue-1), var(--color-blue-3));
+      color: transparent;
+    }
+  }
+
+  &--fill-red {
+    background-image: linear-gradient(to right, var(--color-red-1), var(--color-red-3));
+  }
+
+  &--fill-blue {
+    background-image: linear-gradient(to right, var(--color-blue-1), var(--color-blue-3));
+  }
+
+  &--red {
+    border: 1px solid var(--color-red-2);
+  }
+
+  &--blue {
+    border: 1px solid var(--color-blue-2);
+  }
+}

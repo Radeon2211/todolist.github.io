@@ -1,0 +1,16 @@
+// START PAGE
+
+@keyframes moveHeadingTop {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); opacity: 1 }
+}
+
+@keyframes moveHeadingBottom {
+  0% { transform: translateX(50%); }
+  100% { transform: translateX(0); opacity: 1 }
+}
+
+@keyframes moveHeadingBtn {
+  0% { transform: translateY(8rem); }
+  100% { transform: translateY(0); opacity: 1 }
+}

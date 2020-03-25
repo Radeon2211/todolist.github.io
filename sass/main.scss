@@ -2,9 +2,17 @@
 @import 'abstracts/mixins';
 @import 'abstracts/variables';
 
+@import 'base/utilities';
 @import 'base/animations';
 @import 'base/base';
 @import 'base/typography';
-@import 'base/utilities';
+
+@import 'components/btn';
+
+@import 'layout/footer';
+@import 'layout/scrollbar';
 
 @import 'pages/home';
+@import 'pages/start';
+
+@import 'base/hide';

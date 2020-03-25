@@ -1,7 +1,7 @@
 {
-  "name": "chapter_19",
+  "name": "todo-list",
   "version": "1.0.0",
-  "description": "",
+  "description": "ToDo List application",
   "main": "index.js",
   "scripts": {
     "watch:sass": "node-sass sass/main.scss dist/assets/style.css -w",
@@ -13,9 +13,10 @@
     "compress:css": "node-sass buildcss/style.prefix.css dist/assets/style.css --output-style compressed",
     "build:css": "npm-run-all compile:sass prefix:css compress:css",
     "build:js": "node_modules/.bin/webpack --mode production",
-    "build": "npm-run-all build:css build:js"
+    "build": "npm-run-all build:css build:js",
+    "deploy": "gh-pages -d dist"
   },
-  "author": "",
+  "author": "Radosław Mikrut",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -39,7 +40,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
+    "gh-pages": "^2.2.0",
     "regenerator-runtime": "^0.13.3"
   },
-  "homepage": "https://github.com/Radeon2211/todolist"
+  "homepage": "https://radeon2211.github.io/todolist"
 }

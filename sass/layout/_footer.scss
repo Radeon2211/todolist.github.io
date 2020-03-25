@@ -1,0 +1,38 @@
+.footer {
+  color: var(--color-white-1);
+  padding: 3.2rem 2rem;
+  text-align: center;
+
+  &__copyright {
+    font-size: 1.6rem;
+  }
+
+  &__socials {
+    display: flex;
+    justify-content: center;
+    margin-top: 3.2rem;
+  }
+
+  &__social {
+    align-items: center;
+    color: var(--color-white-1);
+    display: flex;
+    font-size: 1.5rem;
+    text-decoration: none;
+  }
+
+  &__social--1 {
+    margin-right: 3.2rem;
+  }
+
+  &__icon {
+    height: 3.5rem;
+    width: 3.5rem;
+    fill: var(--color-white-1);
+  }
+
+
+  &__social-caption {
+    margin-left: 1.6rem;
+  }
+}

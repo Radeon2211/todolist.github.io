@@ -9,15 +9,15 @@
 html {
   font-size: 62.5%; // 10px
 
-  @include size(tab-port) {
-    font-size: 50%; // 8px
+  @include size(big-desktop) {
+    font-size: 68.75%; // 11px
   }
 
   @include size(tab-land) {
     font-size: 56.25%; // 9px
   }
 
-  @include size(big-desktop) {
-    font-size: 68.75%; // 11px
+  @include size(tab-port) {
+    font-size: 50%; // 8px
   }
 }
