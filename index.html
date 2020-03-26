@@ -3,11 +3,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="rgb(75, 76, 77)">
   <title>ToDo List</title>
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  sdfsdfsdf
+
+  <div class="start">
+    <div class="start__main">
+      <header class="start__topbar">
+        <h2 class="heading-secondary">ToDo List</h2>
+        <div class="start__buttons">
+          <button class="btn btn--small btn--empty-red btn--red">Sign In</button>
+          <button class="btn btn--small btn--fill-red btn--red">Sign Up</button>
+        </div>
+      </header>
+      <main class="start__content">
+        <h1 class="heading-primary start__content-heading">
+          <span class="start__content-heading-part start__content-heading-part--1">Start planning Your day</span>
+          <span class="start__content-heading-part start__content-heading-part--2">with our app just now</span>
+        </h1>
+        <button class="btn btn--big btn--fill-red btn--red start__content-btn">Try for free</button>
+      </main>
+    </div>
+    <footer class="footer">
+      <span class="footer__copyright">© 2020 Radosław Mikrut. All rights reserved</span>
+      <div class="footer__socials">
+        <a href="https://www.linkedin.com/in/rados%C5%82aw-mikrut-a8600b198/" class="footer__social footer__social--1">
+          <svg class="footer__icon">
+            <use xlink:href="assets/sprite.svg#icon-linkedin"></use>
+          </svg>
+        </a>
+        <a href="mailto:radoslawmikrut@wp.pl" class="footer__social footer__social--2">
+          <svg class="footer__icon">
+            <use xlink:href="assets/sprite.svg#icon-envelope"></use>
+          </svg>
+          <span class="footer__social-caption">radoslawmikrut@wp.pl</span>
+        </a>
+      </div>
+    </footer>
+  </div>
 
 
   <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
@@ -18,7 +53,6 @@
   <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
 
   <script>
-    // Your web app's Firebase configuration
     var firebaseConfig = {
       apiKey: "AIzaSyBHRnGHyuwnroGxIOue9LImi4DxmTmfgE0",
       authDomain: "todo-list-9a348.firebaseapp.com",
