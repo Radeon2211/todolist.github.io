@@ -4,6 +4,7 @@
   color: var(--color-white-1);
   cursor: pointer;
   font-family: 'Baloo Da 2', cursive;
+  user-select: none;
 
   &--small {
     font-size: 2.2rem;

@@ -1,0 +1,114 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  transform: translateX(-100%);
+  padding: 3rem 5rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 5000;
+
+  @include size(tab-port) {
+    padding: 3rem;
+  }
+
+  & > *:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+
+  &__input-box {
+    background-color: var(--color-gray-3-transparent);
+    border-radius: 2px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__additional-info {
+    font-size: 1.6rem;
+    color: var(--color-white-1);
+  }
+
+  &__input-label {
+    color: var(--color-white-1);
+    display: block;
+    font-size: 1.5rem;
+    order: -1;
+    padding: .7rem 1rem .4rem;
+    transition: color .2s;
+  }
+
+  &__input-label-rules {
+    font-size: 1.3rem;
+  }
+
+  &__input-field {
+    background-color: transparent;
+    border: none;
+    color: var(--color-white-1);
+    font-size: 1.8rem;
+    outline: none;
+    padding: .4rem 1rem .7rem;
+    transition: border .2s;
+    width: 100%;
+  }
+
+  &__input-border {
+    background-color: var(--color-gray-1);
+    height: 3px;
+    position: relative;
+  }
+
+  &__input-border-fill {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: scaleX(0);
+    transition: transform .2s;
+    width: 100%;
+  }
+
+  &--red &__input-border-fill {
+    background-color: var(--color-red-2);
+  }
+
+  &--blue &__input-border-fill {
+    background-color: var(--color-blue-2);
+  }
+
+  &__input-field:focus ~ &__input-border &__input-border-fill {
+    transform: scaleX(1);
+  }
+
+  &--red &__input-field:focus + &__input-label {
+    color: var(--color-red-2);
+  }
+
+  &--blue &__input-field:focus + &__input-label {
+    color: var(--color-blue-2);
+  }
+
+  &__input-submit {
+    align-self: flex-start;
+  }
+
+  &__switch-form:link,
+  &__switch-form:visited {
+    color: var(--color-white-1);
+    font-size: 1.5rem;
+    justify-self: center;
+  }
+}
+
+.form.show {
+  animation: showForm .7s forwards;
+}
+
+.form.hide {
+  animation: hideForm .7s forwards;
+}

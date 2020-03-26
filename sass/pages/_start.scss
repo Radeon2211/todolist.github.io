@@ -1,12 +1,11 @@
 .start {
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, .75), rgba(0, 0, 0, .65) 15%, rgba(0, 0, 0, .65) 85%, rgba(0, 0, 0, .75)),
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, .72), rgba(0, 0, 0, .72)),
                     url(img/background-small.jpg);
   background-position: center;
   background-size: cover;
 
-  @media (min-resolution: 192dpi) and (min-width: 600px),
-          (min-width: 1200px) {
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, .65) 15%, rgba(0, 0, 0, .65) 85%, rgba(0, 0, 0, .75)),
+  @media (min-resolution: 192dpi) and (min-width: 600px), (min-width: 1200px) {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, .72), rgba(0, 0, 0, .72)),
                       url(img/background.jpg);
   }
 
@@ -61,19 +60,20 @@
   }
 
   &__content-heading-part--1 {
-    animation: moveHeadingTop 1.1s .7s forwards;
+    animation: moveHeadingTop 1s .6s forwards;
     margin-bottom: 1rem;
   }
 
   &__content-heading-part--2 {
-    animation: moveHeadingBottom 1.1s 1.8s forwards;
+    animation: moveHeadingBottom 1s 1.6s forwards;
     margin-top: 1rem;
   }
 
   &__content-btn {
-    animation: moveHeadingBtn 1.1s 2.9s forwards;
+    animation: moveHeadingBtn 1s 2.6s forwards;
     grid-row: 4 / 5;
     opacity: 0;
     justify-self: center;
+    pointer-events: none;
   }
 }
