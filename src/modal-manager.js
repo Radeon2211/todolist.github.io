@@ -9,21 +9,26 @@ export default class ModalManager {
 
     this.switchFormLinks.forEach((link) => link.addEventListener('click', this.switchForm.bind(this, link)));
     this.openModalLinks.forEach((link) => link.addEventListener('click', this.openModal.bind(this, link)));
-    this.closeBtn.addEventListener('click', this.closeModal.bind(this));
-    this.dropdown.addEventListener('click', this.closeModal.bind(this));
+    this.dropdown.addEventListener('mousedown', (e) => this.startingTriggerElement = e.target);
+    this.dropdown.addEventListener('mouseup', this.tryToCloseModal.bind(this));
   }
 
   openModal(link) {
-    this.showedForm = document.querySelector(`.${link.dataset.target}`);
+    this.showedForm = document.querySelector(`.${link.dataset.formTarget}`);
     this.showedForm.classList.add('show');
     this.dropdown.style.transitionDelay = '0s';
     this.modal.style.transitionDelay = '.2s';
     this.dropdown.classList.add('open');
   }
 
-  closeModal(e) {
+  tryToCloseModal(e) {
     e.stopPropagation();
-    if (!e.target.classList.contains('dropdown') && !e.target.closest('.modal__close')) return;
+    if (e.target === this.startingTriggerElement && (e.target.classList.contains('dropdown') || e.target.closest('.modal__close'))) {
+      this.closeModal();
+    }
+  }
+
+  closeModal() {
     this.dropdown.style.transitionDelay = '.2s';
     this.modal.style.transitionDelay = '0s';
     this.dropdown.classList.remove('open');
@@ -34,7 +39,7 @@ export default class ModalManager {
     this.showedForm.classList.remove('show');
     this.showedForm.classList.add('hide');
     this.showedForm.addEventListener('animationend', function resetFormPosition() { this.classList.remove('hide'); });
-    this.showedForm = document.querySelector(`.${link.dataset.target}`);
+    this.showedForm = document.querySelector(`.${link.dataset.formTarget}`);
     this.showedForm.classList.add('show');
   }
 }

@@ -5,21 +5,24 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="rgb(75, 76, 77)">
   <title>ToDo List</title>
-  <link rel="icon" href="assets/img/logo.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/img/logo.png" type="image/png" sizes="256x256">
+  <link rel="apple-touch-icon" href="assets/img/logo.png" sizes="256x256">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
   <div class="dropdown">
+
     <div class="modal">
+
       <svg class="modal__close">
         <use xlink:href="assets/sprite.svg#icon-cancel-circle"></use>
       </svg>
 
-      <form method="POST" class="form form--red form-register">
+      <form method="POST" class="form form--red form-register" spellcheck="false">
         <h3 class="heading-tertiary">Create account</h3>
         <div class="form__input-box">
-          <input type="text" autocomplete="username" name="username" id="register-username" class="form__input-field">
+          <input type="text" autocomplete="username" name="username" id="register-username" maxlength="20" class="form__input-field" spellcheck>
           <label for="register-username" class="form__input-label">Username <span class="form__input-label-rules">(only digits and numbers, 1-20 characters)</span></label>
           <div class="form__input-border">
             <div class="form__input-border-fill"></div>
@@ -33,17 +36,17 @@
           </div>
         </div>
         <div class="form__input-box">
-          <input type="text" autocomplete="new-password" name="password" id="register-password" class="form__input-field">
+          <input type="password" autocomplete="new-password" name="password" id="register-password" class="form__input-field" maxlength="64">
           <label for="register-password" class="form__input-label">Password <span class="form__input-label-rules">(6-64 characters)</span></label>
           <div class="form__input-border">
             <div class="form__input-border-fill"></div>
           </div>
         </div>
-        <button type="submit" class="btn btn--small btn--fill-red btn--red form__input-submit">Come in!</button>
-        <a href="javascript:;" class="form__switch-form form__switch-to-login" data-target="form-login">Already have an account?</a>
+        <button type="submit" class="btn btn--small btn--fill-red btn--red form__input-submit disabled" disabled>Come in!</button>
+        <a href="javascript:;" class="form__switch-form form__switch-to-login" data-form-target="form-login">Already have an account?</a>
       </form>
 
-      <form method="POST" class="form form--red form-login">
+      <form method="POST" class="form form--red form-login" spellcheck="false">
         <h3 class="heading-tertiary">Log in</h3>
         <div class="form__input-box">
           <input type="email" autocomplete="email" name="email" id="login-email" class="form__input-field">
@@ -53,18 +56,18 @@
           </div>
         </div>
         <div class="form__input-box">
-          <input type="text" autocomplete="new-password" name="password" id="login-password" class="form__input-field">
+          <input type="password" autocomplete="current-password" name="password" id="login-password" class="form__input-field">
           <label for="login-password" class="form__input-label">Password</label>
           <div class="form__input-border">
             <div class="form__input-border-fill"></div>
           </div>
         </div>
-        <button type="submit" class="btn btn--small btn--fill-red btn--red form__input-submit">Check out Your todos!</button>
-        <a href="javascript:;" class="form__switch-form form__switch-to-login" data-target="form-register">Don't have an account?</a>
-        <a href="javascript:;" class="form__switch-form form__switch-to-login" data-target="form-reset-password">I forgot my password</a>
+        <button type="submit" class="btn btn--small btn--fill-red btn--red form__input-submit">Check out your todos!</button>
+        <a href="javascript:;" class="form__switch-form form__switch-to-login" data-form-target="form-register">Don't have an account?</a>
+        <a href="javascript:;" class="form__switch-form form__switch-to-login" data-form-target="form-reset-password">I forgot my password</a>
       </form>
 
-      <form method="POST" class="form form--red form-reset-password">
+      <form method="POST" class="form form--red form-reset-password" spellcheck="false">
         <h3 class="heading-tertiary">Reset your password</h3>
         <span class="form__additional-info">We will send you an email with further tips</span>
         <div class="form__input-box">
@@ -75,11 +78,72 @@
           </div>
         </div>
         <button type="submit" class="btn btn--small btn--fill-red btn--red form__input-submit">Reset password!</button>
-        <a href="javascript:;" class="form__switch-form form__switch-to-login" data-target="form-login">I already remembered the password</a>
-        <a href="javascript:;" class="form__switch-form form__switch-to-login" data-target="form-register">I haven't an account yet</a>
+        <a href="javascript:;" class="form__switch-form form__switch-to-login" data-form-target="form-login">I already remembered the password</a>
+        <a href="javascript:;" class="form__switch-form form__switch-to-login" data-form-target="form-register">I haven't an account yet</a>
+      </form>
+
+      <form method="POST" class="form form--blue form-change-username" spellcheck="false">
+        <h3 class="heading-tertiary">Change your username</h3>
+        <div class="form__input-box">
+          <input type="text" autocomplete="username" name="username id="change-username-username" class="form__input-field">
+          <label for="change-username-username" class="form__input-label">Username</label>
+          <div class="form__input-border">
+            <div class="form__input-border-fill"></div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn--small btn--fill-blue btn--blue form__input-submit">Change my username!</button>
+        <a href="javascript:;" class="form__switch-form form__switch-to-login" data-form-target="form-change-password">I want to change my password</a>
+      </form>
+
+      <form method="POST" class="form form--blue form-change-password" spellcheck="false">
+        <h3 class="heading-tertiary">Change your password</h3>
+        <div class="form__input-box">
+          <input type="email" autocomplete="email" name="email" id="change-password-email" class="form__input-field">
+          <label for="change-password-email" class="form__input-label">Email</label>
+          <div class="form__input-border">
+            <div class="form__input-border-fill"></div>
+          </div>
+        </div>
+        <div class="form__input-box">
+          <input type="password" autocomplete="current-password" name="password" id="change-password-password" class="form__input-field">
+          <label for="change-password-password" class="form__input-label">Password</label>
+          <div class="form__input-border">
+            <div class="form__input-border-fill"></div>
+          </div>
+        </div>
+        <div class="form__input-box">
+          <input type="password" autocomplete="new-password" name="password" id="change-password-new-password" class="form__input-field">
+          <label for="change-password-new-password" class="form__input-label">New password</label>
+          <div class="form__input-border">
+            <div class="form__input-border-fill"></div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn--small btn--fill-blue btn--blue form__input-submit">Change my password!</button>
+        <a href="javascript:;" class="form__switch-form form__switch-to-login" data-form-target="form-change-username">I want to change my username</a>
+      </form>
+
+      <form method="POST" class="form form--blue form-delete-account" spellcheck="false">
+        <h3 class="heading-tertiary">Delete your account</h3>
+        <span class="form__additional-info">Confirm your credentials</span>
+        <div class="form__input-box">
+          <input type="email" autocomplete="email" name="email" id="delete-account-email" class="form__input-field">
+          <label for="change-password-email" class="form__input-label">Email</label>
+          <div class="form__input-border">
+            <div class="form__input-border-fill"></div>
+          </div>
+        </div>
+        <div class="form__input-box">
+          <input type="password" autocomplete="current-password" name="password" id="delete-account-password" class="form__input-field">
+          <label for="delete-account-password" class="form__input-label">Password</label>
+          <div class="form__input-border">
+            <div class="form__input-border-fill"></div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn--small btn--fill-blue btn--blue form__input-submit">Delete my account!</button>
       </form>
 
     </div>
+
   </div>
 
   <div class="start">
@@ -88,16 +152,16 @@
       <header class="start__topbar">
         <h2 class="heading-secondary">ToDo List</h2>
         <div class="start__buttons">
-          <button class="btn btn--small btn--empty-red btn--red open-modal-link" data-target="form-login">Sign In</button>
-          <button class="btn btn--small btn--fill-red btn--red open-modal-link" data-target="form-register">Sign Up</button>
+          <button class="btn btn--small btn--empty-red btn--red open-modal-link" data-form-target="form-login">Sign In</button>
+          <button class="btn btn--small btn--fill-red btn--red open-modal-link" data-form-target="form-register">Sign Up</button>
         </div>
       </header>
       <main class="start__content">
         <h1 class="heading-primary start__content-heading">
-          <span class="start__content-heading-part start__content-heading-part--1">Start planning Your day</span>
+          <span class="start__content-heading-part start__content-heading-part--1">Start planning your day</span>
           <span class="start__content-heading-part start__content-heading-part--2">with our app just now</span>
         </h1>
-        <button class="btn btn--big btn--fill-red btn--red start__content-btn open-modal-link" data-target="form-register">Try for free</button>
+        <button class="btn btn--big btn--fill-red btn--red start__content-btn open-modal-link" data-form-target="form-register">Try for free</button>
       </main>
     </div>
 
@@ -117,6 +181,58 @@
         </a>
       </div>
     </footer>
+  </div>
+
+  <div class="home d-none">
+
+    <header class="home__topbar">
+      <h2 class="heading-secondary home__topbar-heading">ToDo List</h2>
+      <img src="assets/img/logo.png" alt="ToDo List" class="home__topbar-logo">
+      <div class="home__user">
+        <div class="home__user-box">
+          <svg class="home__user-icon">
+            <use xlink:href="assets/sprite.svg#icon-user"></use>
+          </svg>
+          <span class="home__username">JanuszGrazynaNowacy</span>
+        </div>
+        <nav class="home__dropdown">
+          <ul class="home__dropdown-list">
+            <li class="home__dropdown-item">
+              <a href="javascript:;" class="home__dropdown-link open-modal-link" data-form-target="form-change-username">Change username</a>
+            </li>
+            <li class="home__dropdown-item">
+              <a href="javascript:;" class="home__dropdown-link open-modal-link" data-form-target="form-change-password">Change password</a>
+            </li>
+            <li class="home__dropdown-item">
+              <a href="javascript:;" class="home__dropdown-link open-modal-link" data-form-target="form-delete-account">Delete account</a>
+            </li>
+            <li class="home__dropdown-item">
+              <a href="javascript:;" class="home__dropdown-link log-out-link">Log out</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="home__main"></main>
+
+    <footer class="footer">
+      <span class="footer__copyright">© 2020 Radosław Mikrut. All rights reserved</span>
+      <div class="footer__socials">
+        <a href="https://www.linkedin.com/in/rados%C5%82aw-mikrut-a8600b198/" target="_blank" class="footer__social footer__social--1">
+          <svg class="footer__icon">
+            <use xlink:href="assets/sprite.svg#icon-linkedin"></use>
+          </svg>
+        </a>
+        <a href="mailto:radoslawmikrut@wp.pl" class="footer__social footer__social--2">
+          <svg class="footer__icon">
+            <use xlink:href="assets/sprite.svg#icon-envelope"></use>
+          </svg>
+          <span class="footer__social-caption">radoslawmikrut@wp.pl</span>
+        </a>
+      </div>
+    </footer>
+
   </div>
 
 

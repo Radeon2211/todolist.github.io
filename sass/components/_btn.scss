@@ -53,4 +53,9 @@
   &--blue {
     border: 1px solid var(--color-blue-2);
   }
+
+  &.disabled {
+    opacity: .5;
+    cursor: auto;
+  }
 }
