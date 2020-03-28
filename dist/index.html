@@ -1,12 +1,14 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="rgb(75, 76, 77)">
+  <meta name="description" content="app, application, application to plan day, todo, todo app, todo list, todos, todo appplication, plan day, plan">
   <title>ToDo List</title>
-  <link rel="icon" href="assets/img/logo.png" type="image/png" sizes="256x256">
-  <link rel="apple-touch-icon" href="assets/img/logo.png" sizes="256x256">
+  <link rel="icon" href="assets/img/logo.png" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/img/logo.png" sizes="180x180">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -85,8 +87,8 @@
       <form method="POST" class="form form--blue form-change-username" spellcheck="false">
         <h3 class="heading-tertiary">Change your username</h3>
         <div class="form__input-box">
-          <input type="text" autocomplete="username" name="username id="change-username-username" class="form__input-field">
-          <label for="change-username-username" class="form__input-label">Username</label>
+          <input type="text" autocomplete="username" name="username" id="change-username-username" class="form__input-field">
+          <label for="change-username-username" class="form__input-label">New username</label>
           <div class="form__input-border">
             <div class="form__input-border-fill"></div>
           </div>
@@ -127,7 +129,7 @@
         <span class="form__additional-info">Confirm your credentials</span>
         <div class="form__input-box">
           <input type="email" autocomplete="email" name="email" id="delete-account-email" class="form__input-field">
-          <label for="change-password-email" class="form__input-label">Email</label>
+          <label for="delete-account-email" class="form__input-label">Email</label>
           <div class="form__input-border">
             <div class="form__input-border-fill"></div>
           </div>
@@ -149,6 +151,7 @@
   <div class="start">
 
     <div class="start__main">
+
       <header class="start__topbar">
         <h2 class="heading-secondary">ToDo List</h2>
         <div class="start__buttons">
@@ -163,12 +166,14 @@
         </h1>
         <button class="btn btn--big btn--fill-red btn--red start__content-btn open-modal-link" data-form-target="form-register">Try for free</button>
       </main>
+
     </div>
 
     <footer class="footer">
+
       <span class="footer__copyright">© 2020 Radosław Mikrut. All rights reserved</span>
       <div class="footer__socials">
-        <a href="https://www.linkedin.com/in/rados%C5%82aw-mikrut-a8600b198/" target="_blank" class="footer__social footer__social--1">
+        <a href="https://www.linkedin.com/in/rados%C5%82aw-mikrut-a8600b198/" target="_blank" rel="noreferrer" class="footer__social footer__social--1">
           <svg class="footer__icon">
             <use xlink:href="assets/sprite.svg#icon-linkedin"></use>
           </svg>
@@ -180,12 +185,15 @@
           <span class="footer__social-caption">radoslawmikrut@wp.pl</span>
         </a>
       </div>
+
     </footer>
+
   </div>
 
   <div class="home d-none">
 
     <header class="home__topbar">
+
       <h2 class="heading-secondary home__topbar-heading">ToDo List</h2>
       <img src="assets/img/logo.png" alt="ToDo List" class="home__topbar-logo">
       <div class="home__user">
@@ -212,14 +220,53 @@
           </ul>
         </nav>
       </div>
+
     </header>
 
-    <main class="home__main"></main>
+    <main class="home__content">
+
+      <div class="home__todos-container">
+
+        <div class="day">
+          <h4 class="heading-fourth day__heading">Yesterday</h4>
+          <div class="todo">
+            <input type="checkbox" class="todo__checkbox" id="todo-checkbox">
+            <label for="todo-checkbox" class="todo__switch-box">
+              <svg class="todo__icon todo__switch-side todo__switch-side--front">
+                <use href="assets/sprite.svg#icon-radio-unchecked"></use>
+              </svg>
+              <div class="todo__switch-side todo__switch-side--back">
+                <svg class="todo__icon">
+                  <use href="assets/sprite.svg#icon-radio-unchecked"></use>
+                </svg>
+                <svg class="todo__icon todo__icon-hook">
+                  <use href="assets/sprite.svg#icon-checkmark"></use>
+                </svg>
+              </div>
+            </label>
+            <div class="todo__textarea-container">
+              <textarea class="todo__textarea" rows="1" maxlength="200"></textarea>
+              <div class="todo__textarea-cross"></div>
+            </div>
+            <svg class="todo__icon todo__icon-remove">
+              <use href="assets/sprite.svg#icon-bin"></use>
+            </svg>
+          </div>
+
+          <svg class="day__add-todo">
+            <use href="assets/sprite.svg#icon-add-outline"></use>
+          </svg>
+        </div>
+
+      </div>
+
+    </main>
 
     <footer class="footer">
+
       <span class="footer__copyright">© 2020 Radosław Mikrut. All rights reserved</span>
       <div class="footer__socials">
-        <a href="https://www.linkedin.com/in/rados%C5%82aw-mikrut-a8600b198/" target="_blank" class="footer__social footer__social--1">
+        <a href="https://www.linkedin.com/in/rados%C5%82aw-mikrut-a8600b198/" target="_blank" rel="noreferrer" class="footer__social footer__social--1">
           <svg class="footer__icon">
             <use xlink:href="assets/sprite.svg#icon-linkedin"></use>
           </svg>
@@ -231,6 +278,7 @@
           <span class="footer__social-caption">radoslawmikrut@wp.pl</span>
         </a>
       </div>
+
     </footer>
 
   </div>

@@ -1,0 +1,36 @@
+.day {
+  border: 1px solid var(--color-blue-2);
+  border-radius: 10px;
+  padding: 5rem 2rem 3rem;
+  margin: 3rem;
+  position: relative;
+  width: 52rem;
+  min-width: 45rem;
+  max-width: 100%;
+  text-align: center;
+
+  @include size(phone) {
+    width: 100%;
+    margin: 3rem 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  &__heading {
+    background-color: var(--color-gray-2);
+    left: 5rem;
+    padding: 0 1.5rem;
+    position: absolute;
+    top: 0;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+  
+  &__add-todo {
+    cursor: pointer;
+    fill: var(--color-blue-2);
+    height: 5.5rem;
+    width: 5.5rem;
+  }
+}
+

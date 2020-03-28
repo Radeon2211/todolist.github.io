@@ -16,6 +16,7 @@ export default class ModalManager {
   openModal(link) {
     this.showedForm = document.querySelector(`.${link.dataset.formTarget}`);
     this.showedForm.classList.add('show');
+    this.showedForm.querySelector('.form__input-field').focus();
     this.dropdown.style.transitionDelay = '0s';
     this.modal.style.transitionDelay = '.2s';
     this.dropdown.classList.add('open');
