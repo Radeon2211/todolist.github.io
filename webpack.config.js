@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/app.js',
   output: {
     path: path.resolve(__dirname, 'dist/assets'),
     filename: 'bundle.js',
@@ -23,6 +23,9 @@ module.exports = {
               '@babel/preset-env',
               { useBuiltIns: 'usage', corejs: { version: 3 } },
             ],
+          ],
+          plugins: [
+            '@babel/plugin-proposal-class-properties',
           ],
         },
       },

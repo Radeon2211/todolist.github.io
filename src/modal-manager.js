@@ -1,16 +1,16 @@
 export default class ModalManager {
-  constructor() {
-    this.dropdown = document.querySelector('.dropdown');
-    this.modal = document.querySelector('.modal');
-    this.closeBtn = document.querySelector('.modal__close');
-    this.showedForm = null;
-    this.switchFormLinks = document.querySelectorAll('.form__switch-form');
-    this.openModalLinks = document.querySelectorAll('.open-modal-link');
+  dropdown = document.querySelector('.dropdown');
+  modal = document.querySelector('.modal');
+  closeBtn = document.querySelector('.modal__close');
+  showedForm;
+  switchFormLinks = document.querySelectorAll('.form__switch-form');
+  openModalLinks = document.querySelectorAll('.open-modal-link');
 
+  constructor() {
     this.switchFormLinks.forEach((link) => link.addEventListener('click', this.switchForm.bind(this, link)));
     this.openModalLinks.forEach((link) => link.addEventListener('click', this.openModal.bind(this, link)));
     this.dropdown.addEventListener('mousedown', (e) => this.startingTriggerElement = e.target);
-    this.dropdown.addEventListener('mouseup', this.tryToCloseModal.bind(this));
+    this.dropdown.addEventListener('mouseup', this.tryToCloseModal);
   }
 
   openModal(link) {
@@ -22,7 +22,7 @@ export default class ModalManager {
     this.dropdown.classList.add('open');
   }
 
-  tryToCloseModal(e) {
+  tryToCloseModal = (e) => {
     e.stopPropagation();
     if (e.target === this.startingTriggerElement && (e.target.classList.contains('dropdown') || e.target.closest('.modal__close'))) {
       this.closeModal();
@@ -42,5 +42,6 @@ export default class ModalManager {
     this.showedForm.addEventListener('animationend', function resetFormPosition() { this.classList.remove('hide'); });
     this.showedForm = document.querySelector(`.${link.dataset.formTarget}`);
     this.showedForm.classList.add('show');
+    this.showedForm.querySelector('.form__input-field').focus();
   }
 }

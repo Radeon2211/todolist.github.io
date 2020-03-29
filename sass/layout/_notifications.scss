@@ -1,0 +1,13 @@
+.notifications {
+  left: 50%;
+  max-width: 100%;
+  position: fixed;
+  top: 0;
+  transform: translateX(-50%);
+  width: 60rem;
+  z-index: 1000000;
+
+  @include size(phone) {
+    width: 100%;
+  }
+}
