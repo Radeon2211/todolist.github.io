@@ -5,13 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="rgb(75, 76, 77)">
-  <meta name="description" content="app, application, application to plan day, todo, todo app, todo list, todos, todo appplication, plan day, plan">
+  <meta name="description" content="Application which helps to plan your day">
   <title>ToDo List</title>
   <link rel="icon" href="assets/img/logo.png" type="image/png" sizes="180x180">
   <link rel="apple-touch-icon" href="assets/img/logo.png" sizes="180x180">
   <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/notification-box.min.js" defer></script>
 </head>
 <body>
+
+  <div class="notifications"></div>
 
   <div class="dropdown">
 
@@ -58,7 +61,7 @@
           </div>
         </div>
         <div class="form__input-box">
-          <input type="password" autocomplete="current-password" name="password" id="login-password" class="form__input-field">
+          <input type="password" autocomplete="current-password" name="password" id="login-password" class="form__input-field" maxlength="64">
           <label for="login-password" class="form__input-label">Password</label>
           <div class="form__input-border">
             <div class="form__input-border-fill"></div>
@@ -87,13 +90,13 @@
       <form method="POST" class="form form--blue form-change-username" spellcheck="false">
         <h3 class="heading-tertiary">Change your username</h3>
         <div class="form__input-box">
-          <input type="text" autocomplete="username" name="username" id="change-username-username" class="form__input-field">
-          <label for="change-username-username" class="form__input-label">New username</label>
+          <input type="text" autocomplete="username" name="username" id="change-username-username" class="form__input-field" maxlength="20">
+          <label for="change-username-username" class="form__input-label">New username <span class="form__input-label-rules">(only digits and numbers, 1-20 characters)</span></label>
           <div class="form__input-border">
             <div class="form__input-border-fill"></div>
           </div>
         </div>
-        <button type="submit" class="btn btn--small btn--fill-blue btn--blue form__input-submit">Change my username!</button>
+        <button type="submit" class="btn btn--small btn--fill-blue btn--blue form__input-submit disabled" disabled>Change my username!</button>
         <a href="javascript:;" class="form__switch-form form__switch-to-login" data-form-target="form-change-password">I want to change my password</a>
       </form>
 
@@ -135,7 +138,7 @@
           </div>
         </div>
         <div class="form__input-box">
-          <input type="password" autocomplete="current-password" name="password" id="delete-account-password" class="form__input-field">
+          <input type="password" autocomplete="current-password" name="password" id="delete-account-password" class="form__input-field" maxlength="64">
           <label for="delete-account-password" class="form__input-label">Password</label>
           <div class="form__input-border">
             <div class="form__input-border-fill"></div>
@@ -148,7 +151,7 @@
 
   </div>
 
-  <div class="start">
+  <div class="start d-none">
 
     <div class="start__main">
 
