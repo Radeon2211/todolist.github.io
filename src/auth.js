@@ -67,15 +67,24 @@ export default class Register {
 
 export class RestAuth {
   loginForm = document.querySelector('.form-login');
+  resetPasswordForm = document.querySelector('.form-reset-password');
   changeUsernameForm = document.querySelector('.form-change-username');
   changeUsernameInput = this.changeUsernameForm.querySelector('.form__input-field');
   changeUsernameSubmitBtn = this.changeUsernameForm.querySelector('.form__input-submit');
+  changePasswordForm = document.querySelector('.form-change-password');
+  changePasswordInput = this.changePasswordForm.querySelector('[name=newPassword]');
+  changePasswordSubmitBtn = this.changePasswordForm.querySelector('.form__input-submit');
+  deleteAccountForm = document.querySelector('.form-delete-account');
   logoutLink = document.querySelector('.log-out-link');
 
   constructor() {
     this.loginForm.addEventListener('submit', this.logIn);
+    this.resetPasswordForm.addEventListener('submit', this.resetPassword);
     this.changeUsernameForm.addEventListener('submit', this.changeUsername);
     this.changeUsernameInput.addEventListener('keyup', this.validateChangeUsernameInput);
+    this.changePasswordForm.addEventListener('submit', this.changePassword);
+    this.changePasswordInput.addEventListener('keyup', this.validateChangePasswordInput);
+    this.deleteAccountForm.addEventListener('submit', this.deleteAccount);
     this.logoutLink.addEventListener('click', this.signOut);
   }
 
@@ -86,6 +95,17 @@ export class RestAuth {
     }
     const safeLogInAction = Utilities.handleError(logInAction, true);
     safeLogInAction();
+    this.password.value = '';
+  }
+
+  resetPassword(e) {
+    e.preventDefault();
+    const resetPasswordAction = async () => {
+      await auth.sendPasswordResetEmail(this.email.value.trim());
+      Utilities.renderNotification({ message: 'Please, check out your email! :)' }, 'info', 6000);
+    }
+    const safeResetPasswordAction = Utilities.handleError(resetPasswordAction);
+    safeResetPasswordAction();
   }
 
   changeUsername(e) {
@@ -114,11 +134,62 @@ export class RestAuth {
     }
   }
 
+  changePassword = (e) => {
+    e.preventDefault();
+    const email = this.changePasswordForm.email.value.trim();
+    const password = this.changePasswordForm.password.value.trim();
+    const newPassword = this.changePasswordForm.newPassword.value.trim();
+
+    const changePasswordAction = async () => {
+      const user = auth.currentUser;
+      await this.reauthenticateUser(email, password, user);
+      await user.updatePassword(newPassword);
+      Utilities.renderNotification({ message: 'Password has been changed successfully! :)' }, 'success', 5000);
+      modalManager.closeModal();
+    }
+    const safeChangePasswordAction = Utilities.handleError(changePasswordAction, false);
+    safeChangePasswordAction();
+    this.changePasswordForm.password.value = '';
+    this.changePasswordForm.newPassword.value = '';
+  }
+
+  validateChangePasswordInput = () => {
+    if (!patterns.password.test(this.changePasswordInput.value.trim())) {
+      this.changePasswordInput.classList.add('invalid');
+      this.changePasswordSubmitBtn.disabled = true;
+      this.changePasswordSubmitBtn.classList.add('disabled');
+    } else {
+      this.changePasswordInput.classList.remove('invalid');
+      this.changePasswordSubmitBtn.disabled = false;
+      this.changePasswordSubmitBtn.classList.remove('disabled');
+    }
+  }
+
+  deleteAccount = (e) => {
+    e.preventDefault();
+    const email = this.deleteAccountForm.email.value.trim();
+    const password = this.deleteAccountForm.password.value.trim();
+
+    const deleteAccountAction = async () => {
+      const user = auth.currentUser;
+      await this.reauthenticateUser(email, password, user);
+      await user.delete();
+    }
+    const safeDeleteAccountAction = Utilities.handleError(deleteAccountAction, true);
+    safeDeleteAccountAction();
+    this.deleteAccountForm.password.value = '';
+  }
+
   signOut() {
     const signOutAction = async () => {
       await auth.signOut();
     }
     const safeSignOutAction = Utilities.handleError(signOutAction, true);
     safeSignOutAction();
+  }
+
+  reauthenticateUser(email, password, user) {
+    const credential = firebase.auth.EmailAuthProvider.credential(email, password);
+    return user.reauthenticateWithCredential(credential);
   }
 }

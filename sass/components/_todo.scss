@@ -4,8 +4,11 @@
   padding: 1.3rem 1rem;
   border: 1px solid var(--color-blue-2);
   border-radius: 10px;
-  margin-bottom: 3rem;
   perspective: 1000px;
+
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
 
   &__checkbox {
     display: none;
@@ -38,11 +41,11 @@
     fill: var(--color-blue-3-transparent);
   }
 
-  &__checkbox:checked ~ &__switch-box &__switch-side--front {
+  &.done &__switch-box &__switch-side--front {
     transform: rotateY(180deg);
   }
 
-  &__checkbox:checked ~ &__switch-box &__switch-side--back {
+  &.done &__switch-box &__switch-side--back {
     transform: rotateY(0);
   }
 
@@ -78,7 +81,7 @@
     transition: color .2s;
   }
 
-  &__checkbox:checked ~ &__textarea-container &__textarea {
+  &.done &__textarea-container &__textarea {
     color: var(--color-white-3);
   }
 
@@ -92,7 +95,7 @@
     background-color: var(--color-white-1);
   }
 
-  &__checkbox:checked ~ &__textarea-container &__textarea-cross {
+  &.done &__textarea-container &__textarea-cross {
     width: 100%;
     background-color: var(--color-white-3);
   }
@@ -104,7 +107,7 @@
     transition: all .4s ease-in-out;
   }
 
-  &__checkbox:checked ~ &__icon-remove {
+  &.done &__icon-remove {
     fill: var(--color-blue-3-transparent);
   }
 }

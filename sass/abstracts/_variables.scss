@@ -9,9 +9,9 @@
   --color-red-4: rgb(255, 0, 0);
   --color-blue-1: rgb(85, 162, 255);
   --color-blue-2: rgb(66, 151, 255);
-  --color-blue-2-transparent: rgba(68, 152, 255, .6);
+  --color-blue-2-transparent: rgba(68, 152, 255, .7);
   --color-blue-3: rgb(51, 143, 255);
-  --color-blue-3-transparent: rgba(51, 143, 255, .6);
+  --color-blue-3-transparent: rgba(51, 143, 255, .7);
   --color-gray-1: rgb(106, 109, 112);
   --color-gray-2: rgb(75, 76, 77);
   --color-gray-3: rgb(49, 49, 49);
@@ -19,4 +19,12 @@
   --color-black-1: rgb(15, 15, 15);
   --color-black-2: rgb(34, 34, 34);
   --color-black-2-transparent: rgba(34, 34, 34, .85);
+
+  // Z-INDEX
+  --z-index-1: 10;
+  --z-index-2: 100;
+  --z-index-3: 1000;
+  --z-index-4: 10000;
+  --z-index-5: 100000;
+  --z-index-6: 1000000;
 }

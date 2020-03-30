@@ -2,7 +2,7 @@ export default class Utilities {
   static usernameNode = document.querySelector('.home__username');
   static notificationsContainer = document.querySelector('.notifications');
 
-  static renderNotification(error, type) {
+  static renderNotification(error, type, time = 4000) {
     const notifToReset = Utilities.notificationsContainer.querySelector(`[type="${type}"]`);
     if (notifToReset) {
       const notifContent = notifToReset.querySelector('span').textContent;
@@ -14,7 +14,7 @@ export default class Utilities {
 
     const newElement = document.createElement('rm-notification-box');
     newElement.setAttribute('type', type);
-    newElement.setAttribute('time', 4000);
+    newElement.setAttribute('time', time);
     newElement.innerHTML = `<span slot="text">${error.message}</span>`;
     Utilities.notificationsContainer.append(newElement);
   }

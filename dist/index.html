@@ -14,6 +14,31 @@
 </head>
 <body>
 
+  <template id="todo">
+    <div class="todo">
+      <div for="todo-checkbox" class="todo__switch-box">
+        <svg class="todo__icon todo__switch-side todo__switch-side--front">
+          <use href="assets/sprite.svg#icon-radio-unchecked"></use>
+        </svg>
+        <div class="todo__switch-side todo__switch-side--back">
+          <svg class="todo__icon">
+            <use href="assets/sprite.svg#icon-radio-unchecked"></use>
+          </svg>
+          <svg class="todo__icon todo__icon-hook">
+            <use href="assets/sprite.svg#icon-checkmark"></use>
+          </svg>
+        </div>
+      </div>
+      <div class="todo__textarea-container">
+        <textarea class="todo__textarea" rows="1" maxlength="150"></textarea>
+        <div class="todo__textarea-cross"></div>
+      </div>
+      <svg class="todo__icon todo__icon-remove">
+        <use href="assets/sprite.svg#icon-bin"></use>
+      </svg>
+    </div>
+  </template>
+
   <div class="notifications"></div>
 
   <div class="dropdown">
@@ -48,7 +73,7 @@
           </div>
         </div>
         <button type="submit" class="btn btn--small btn--fill-red btn--red form__input-submit disabled" disabled>Come in!</button>
-        <a href="javascript:;" class="form__switch-form form__switch-to-login" data-form-target="form-login">Already have an account?</a>
+        <a href="javascript:;" class="form__switch-form" data-form-target="form-login">Already have an account?</a>
       </form>
 
       <form method="POST" class="form form--red form-login" spellcheck="false">
@@ -68,8 +93,8 @@
           </div>
         </div>
         <button type="submit" class="btn btn--small btn--fill-red btn--red form__input-submit">Check out your todos!</button>
-        <a href="javascript:;" class="form__switch-form form__switch-to-login" data-form-target="form-register">Don't have an account?</a>
-        <a href="javascript:;" class="form__switch-form form__switch-to-login" data-form-target="form-reset-password">I forgot my password</a>
+        <a href="javascript:;" class="form__switch-form" data-form-target="form-register">Don't have an account?</a>
+        <a href="javascript:;" class="form__switch-form" data-form-target="form-reset-password">I forgot my password</a>
       </form>
 
       <form method="POST" class="form form--red form-reset-password" spellcheck="false">
@@ -83,8 +108,8 @@
           </div>
         </div>
         <button type="submit" class="btn btn--small btn--fill-red btn--red form__input-submit">Reset password!</button>
-        <a href="javascript:;" class="form__switch-form form__switch-to-login" data-form-target="form-login">I already remembered the password</a>
-        <a href="javascript:;" class="form__switch-form form__switch-to-login" data-form-target="form-register">I haven't an account yet</a>
+        <a href="javascript:;" class="form__switch-form" data-form-target="form-login">I already remembered the password</a>
+        <a href="javascript:;" class="form__switch-form" data-form-target="form-register">I haven't an account yet</a>
       </form>
 
       <form method="POST" class="form form--blue form-change-username" spellcheck="false">
@@ -97,7 +122,7 @@
           </div>
         </div>
         <button type="submit" class="btn btn--small btn--fill-blue btn--blue form__input-submit disabled" disabled>Change my username!</button>
-        <a href="javascript:;" class="form__switch-form form__switch-to-login" data-form-target="form-change-password">I want to change my password</a>
+        <a href="javascript:;" class="form__switch-form" data-form-target="form-change-password">I want to change my password</a>
       </form>
 
       <form method="POST" class="form form--blue form-change-password" spellcheck="false">
@@ -110,21 +135,21 @@
           </div>
         </div>
         <div class="form__input-box">
-          <input type="password" autocomplete="current-password" name="password" id="change-password-password" class="form__input-field">
+          <input type="password" autocomplete="current-password" name="password" id="change-password-password" class="form__input-field" maxlength="64">
           <label for="change-password-password" class="form__input-label">Password</label>
           <div class="form__input-border">
             <div class="form__input-border-fill"></div>
           </div>
         </div>
         <div class="form__input-box">
-          <input type="password" autocomplete="new-password" name="password" id="change-password-new-password" class="form__input-field">
-          <label for="change-password-new-password" class="form__input-label">New password</label>
+          <input type="password" autocomplete="new-password" name="newPassword" id="change-password-new-password" class="form__input-field" maxlength="64">
+          <label for="change-password-new-password" class="form__input-label">New password <span class="form__input-label-rules">(6-64 characters)</span></label>
           <div class="form__input-border">
             <div class="form__input-border-fill"></div>
           </div>
         </div>
-        <button type="submit" class="btn btn--small btn--fill-blue btn--blue form__input-submit">Change my password!</button>
-        <a href="javascript:;" class="form__switch-form form__switch-to-login" data-form-target="form-change-username">I want to change my username</a>
+        <button type="submit" class="btn btn--small btn--fill-blue btn--blue form__input-submit disabled" disabled>Change my password!</button>
+        <a href="javascript:;" class="form__switch-form" data-form-target="form-change-username">I want to change my username</a>
       </form>
 
       <form method="POST" class="form form--blue form-delete-account" spellcheck="false">
@@ -229,38 +254,23 @@
     <main class="home__content">
 
       <div class="home__todos-container">
-
-        <div class="day">
+        <div class="day day-yesterday d-none">
           <h4 class="heading-fourth day__heading">Yesterday</h4>
-          <div class="todo">
-            <input type="checkbox" class="todo__checkbox" id="todo-checkbox">
-            <label for="todo-checkbox" class="todo__switch-box">
-              <svg class="todo__icon todo__switch-side todo__switch-side--front">
-                <use href="assets/sprite.svg#icon-radio-unchecked"></use>
-              </svg>
-              <div class="todo__switch-side todo__switch-side--back">
-                <svg class="todo__icon">
-                  <use href="assets/sprite.svg#icon-radio-unchecked"></use>
-                </svg>
-                <svg class="todo__icon todo__icon-hook">
-                  <use href="assets/sprite.svg#icon-checkmark"></use>
-                </svg>
-              </div>
-            </label>
-            <div class="todo__textarea-container">
-              <textarea class="todo__textarea" rows="1" maxlength="200"></textarea>
-              <div class="todo__textarea-cross"></div>
-            </div>
-            <svg class="todo__icon todo__icon-remove">
-              <use href="assets/sprite.svg#icon-bin"></use>
-            </svg>
-          </div>
+        </div>
 
-          <svg class="day__add-todo">
+        <div class="day day-today">
+          <h4 class="heading-fourth day__heading">Today</h4>
+          <svg class="day__add-todo" data-todo-target="today">
             <use href="assets/sprite.svg#icon-add-outline"></use>
           </svg>
         </div>
 
+        <div class="day day-tomorrow">
+          <h4 class="heading-fourth day__heading">Tomorrow</h4>
+          <svg class="day__add-todo" data-todo-target="tomorrow">
+            <use href="assets/sprite.svg#icon-add-outline"></use>
+          </svg>
+        </div>
       </div>
 
     </main>

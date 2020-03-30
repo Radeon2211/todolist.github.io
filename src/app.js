@@ -1,23 +1,36 @@
 import Register, { RestAuth } from './auth';
 import Utilities from './utilities';
+import DOMHelper from './dom-helper';
+import Todo from './todo';
 
 const register = new Register();
 const restAuth = new RestAuth();
+const domHelper = new DOMHelper();
 
-const startPage = document.querySelector('.home');
-const userContainer = document.querySelector('.home__user');
-startPage.addEventListener('click', (e) => {
-  if (e.target.closest('.home__user')) {
-    userContainer.classList.toggle('open');
-  } else {
-    userContainer.classList.remove('open');
-  }
+const addTodoBtns = document.querySelectorAll('.day__add-todo');
+addTodoBtns.forEach((btn) => {
+  const target = btn.dataset.todoTarget;
+  const newTodoExpiresAt = Date.now() + (btn.dataset.todoTarget === 'tomorrow' ? 86400 : 0) / 1000;
+  btn.addEventListener('click', () => new Todo('', false, newTodoExpiresAt));
 });
+
+const fetchTodos = (uid) => {
+  const fetchTodosAction = async () => {
+    const { docs: todos } = await db.collection('todos').where('owner', '==', uid).orderBy('expires_at', 'asc').get();
+    todos.forEach((todo) => {
+      const { content, done, expires_at: { seconds: expiresAt } } = todo.data();
+      new Todo(content, done, expiresAt);
+    });
+  };
+  const safeFetchTodosAction = Utilities.handleError(fetchTodosAction);
+  safeFetchTodosAction();
+};
 
 auth.onAuthStateChanged((user) => {
   const startPage = document.querySelector('.start');
   const homePage = document.querySelector('.home');
   if (user) {
+    fetchTodos(user.uid);
     document.body.classList.add('logged-in');
     startPage.classList.add('d-none');
     homePage.classList.remove('d-none');

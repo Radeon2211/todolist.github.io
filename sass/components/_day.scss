@@ -1,11 +1,10 @@
 .day {
   border: 1px solid var(--color-blue-2);
   border-radius: 10px;
-  padding: 5rem 2rem 3rem;
+  padding: 4rem 2rem 4rem;
   margin: 3rem;
   position: relative;
-  width: 52rem;
-  min-width: 45rem;
+  width: 45rem;
   max-width: 100%;
   text-align: center;
 
@@ -23,7 +22,7 @@
     position: absolute;
     top: 0;
     transform: translateY(-50%);
-    z-index: 10;
+    z-index: var(--z-index-1);
   }
 
   &__add-todo {
