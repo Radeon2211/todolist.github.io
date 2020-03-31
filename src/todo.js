@@ -70,9 +70,7 @@ class Todo {
     if (todoTime > curTime + todaySecondsLeft && todoTime <= curTime + todaySecondsLeft + 86400) return 'tomorrow';
     if (todoTime <= curTime + todaySecondsLeft && todoTime >= curTime - todaySeconds) return 'today';
     if (todoTime < curTime - todaySeconds && todoTime >= curTime - todaySeconds - 86400) return 'yesterday';
-    else {
-      this.deleteDB();
-    }
+    else this.deleteDB();
   }
 
   tryToUpdate() {

@@ -42,10 +42,12 @@ export default class Register {
     }
   }
 
-  async createUser(email, password, username) {
+  async createUser(email, password, username, loader) {
+    this.form.querySelector('.form__input-submit').append(loader);
     const setDisplayName = firebase.functions().httpsCallable('setDisplayName');
     const { user } = await auth.createUserWithEmailAndPassword(email, password);
     await setDisplayName({ username, uid: user.uid });
+    loader.remove();
   }
 
   formSubmitHandler = (e) => {
@@ -60,7 +62,8 @@ export default class Register {
       Utilities.renderNotification({ message: 'You entered incorrect credentials. Please try again' }, 'danger');
       return;
     }
-    const safeCreateUser = Utilities.handleError(this.createUser.bind(null, email, password, username), true);
+    const loader = Utilities.createLoader('small', '#fff', 'mg-left-sm');
+    const safeCreateUser = Utilities.handleError(this.createUser.bind(this, email, password, username, loader), loader, true);
     safeCreateUser();
   }
 }
@@ -90,21 +93,27 @@ export class RestAuth {
 
   logIn(e) {
     e.preventDefault();
+    const loader = Utilities.createLoader('small', '#fff', 'mg-left-sm');
     const logInAction = async () => {
+      this.querySelector('.form__input-submit').append(loader);
       await auth.signInWithEmailAndPassword(this.email.value.trim(), this.password.value.trim());
+      loader.remove();
     }
-    const safeLogInAction = Utilities.handleError(logInAction, true);
+    const safeLogInAction = Utilities.handleError(logInAction, loader, true);
     safeLogInAction();
     this.password.value = '';
   }
 
   resetPassword(e) {
     e.preventDefault();
+    const loader = Utilities.createLoader('small', '#fff', 'mg-left-sm');
     const resetPasswordAction = async () => {
+      this.querySelector('.form__input-submit').append(loader);
       await auth.sendPasswordResetEmail(this.email.value.trim());
       Utilities.renderNotification({ message: 'Please, check out your email! :)' }, 'info', 6000);
+      loader.remove();
     }
-    const safeResetPasswordAction = Utilities.handleError(resetPasswordAction);
+    const safeResetPasswordAction = Utilities.handleError(resetPasswordAction, loader);
     safeResetPasswordAction();
   }
 
@@ -115,11 +124,19 @@ export class RestAuth {
       Utilities.renderNotification({ message: 'Username is invalid. Please try something different' }, 'danger');
       return;
     }
+    if (newUsername === auth.currentUser.displayName) {
+      Utilities.renderNotification({ message: 'You have this name already' }, 'warning');
+      return;
+    }
+
+    const loader = Utilities.createLoader('small', '#fff', 'mg-left-sm');
     const changeUsernameAction = async () => {
+      this.querySelector('.form__input-submit').append(loader);
       const setDisplayName = firebase.functions().httpsCallable('setDisplayName');
       await setDisplayName({ username: newUsername, uid: auth.currentUser.uid });
+      loader.remove();
     }
-    const safeChangeUsernameAction = Utilities.handleError(changeUsernameAction, true);
+    const safeChangeUsernameAction = Utilities.handleError(changeUsernameAction, loader, true);
     safeChangeUsernameAction();
   }
 
@@ -141,14 +158,17 @@ export class RestAuth {
     const password = this.changePasswordForm.password.value.trim();
     const newPassword = this.changePasswordForm.newPassword.value.trim();
 
+    const loader = Utilities.createLoader('small', '#fff', 'mg-left-sm');
     const changePasswordAction = async () => {
+      this.changePasswordForm.querySelector('.form__input-submit').append(loader);
       const user = auth.currentUser;
       await this.reauthenticateUser(email, password, user);
       await user.updatePassword(newPassword);
       Utilities.renderNotification({ message: 'Password has been changed successfully! :)' }, 'success', 4000);
       modalManager.closeModal();
+      loader.remove();
     }
-    const safeChangePasswordAction = Utilities.handleError(changePasswordAction, false);
+    const safeChangePasswordAction = Utilities.handleError(changePasswordAction, loader);
     safeChangePasswordAction();
     this.changePasswordForm.password.value = '';
     this.changePasswordForm.newPassword.value = '';
@@ -171,12 +191,15 @@ export class RestAuth {
     const email = this.deleteAccountForm.email.value.trim();
     const password = this.deleteAccountForm.password.value.trim();
 
+    const loader = Utilities.createLoader('small', '#fff', 'mg-left-sm');
     const deleteAccountAction = async () => {
+      this.deleteAccountForm.querySelector('.form__input-submit').append(loader);
       const user = auth.currentUser;
       await this.reauthenticateUser(email, password, user);
       await user.delete();
+      loader.remove();
     }
-    const safeDeleteAccountAction = Utilities.handleError(deleteAccountAction, true);
+    const safeDeleteAccountAction = Utilities.handleError(deleteAccountAction, loader, true);
     safeDeleteAccountAction();
     this.deleteAccountForm.password.value = '';
   }
@@ -185,7 +208,7 @@ export class RestAuth {
     const signOutAction = async () => {
       await auth.signOut();
     }
-    const safeSignOutAction = Utilities.handleError(signOutAction, true);
+    const safeSignOutAction = Utilities.handleError(signOutAction, null, true);
     safeSignOutAction();
   }
 

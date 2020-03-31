@@ -19,11 +19,12 @@ export default class Utilities {
     Utilities.notificationsContainer.append(newElement);
   }
 
-  static handleError(fn, reload) {
+  static handleError(fn, loader, reload) {
     return function (...params) {
       return fn(...params).then(() => {
         if (reload) location.reload();
       }).catch((err) => {
+        if (loader) loader.remove();
         Utilities.renderNotification(err, 'danger');
       });
     }
@@ -31,5 +32,13 @@ export default class Utilities {
 
   static updateUsername(username) {
     this.usernameNode.textContent = username;
+  }
+
+  static createLoader(size, color, classes) {
+    const loader = document.createElement('rm-loader');
+    if (size) loader.setAttribute('size', size);
+    if (color) loader.setAttribute('color', color);
+    if (classes) loader.className = classes;
+    return loader;
   }
 }

@@ -5,6 +5,8 @@
   cursor: pointer;
   font-family: 'Baloo Da 2', cursive;
   user-select: none;
+  display: flex;
+  align-items: center;
 
   &--small {
     font-size: 2.2rem;

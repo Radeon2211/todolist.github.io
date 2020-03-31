@@ -14,14 +14,18 @@ addTodoBtns.forEach((btn) => {
 });
 
 const fetchTodos = (uid) => {
+  const loader = Utilities.createLoader('medium', '#fff');
   const fetchTodosAction = async () => {
+    document.querySelector('.home__content').append(loader);
     const { docs: todos } = await db.collection('todos').where('owner', '==', uid).orderBy('expires_at', 'asc').get();
     todos.forEach((todo) => {
       const { content, done, expires_at: { seconds: expiresAt } } = todo.data();
       new ExistingTodo(content, done, expiresAt, todo.id);
     });
+    loader.remove();
+    document.querySelector('.home__todos-container').classList.remove('d-none');
   };
-  const safeFetchTodosAction = Utilities.handleError(fetchTodosAction);
+  const safeFetchTodosAction = Utilities.handleError(fetchTodosAction, loader);
   safeFetchTodosAction();
 };
 
