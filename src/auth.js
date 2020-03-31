@@ -113,6 +113,7 @@ export class RestAuth {
     const newUsername = this.username.value.trim();
     if (!patterns.username.test(newUsername)) {
       Utilities.renderNotification({ message: 'Username is invalid. Please try something different' }, 'danger');
+      return;
     }
     const changeUsernameAction = async () => {
       const setDisplayName = firebase.functions().httpsCallable('setDisplayName');
@@ -144,7 +145,7 @@ export class RestAuth {
       const user = auth.currentUser;
       await this.reauthenticateUser(email, password, user);
       await user.updatePassword(newPassword);
-      Utilities.renderNotification({ message: 'Password has been changed successfully! :)' }, 'success', 5000);
+      Utilities.renderNotification({ message: 'Password has been changed successfully! :)' }, 'success', 4000);
       modalManager.closeModal();
     }
     const safeChangePasswordAction = Utilities.handleError(changePasswordAction, false);
