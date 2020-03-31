@@ -2,7 +2,7 @@ export default class Utilities {
   static usernameNode = document.querySelector('.home__username');
   static notificationsContainer = document.querySelector('.notifications');
 
-  static renderNotification(error, type, time = 4000) {
+  static renderNotification(error, type, time = 40000) {
     const notifToReset = Utilities.notificationsContainer.querySelector(`[type="${type}"]`);
     if (notifToReset) {
       const notifContent = notifToReset.querySelector('span').textContent;

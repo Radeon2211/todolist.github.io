@@ -1,7 +1,7 @@
 import Register, { RestAuth } from './auth';
 import Utilities from './utilities';
 import DOMHelper from './dom-helper';
-import Todo from './todo';
+import { ExistingTodo, NewTodo } from './todo';
 
 const register = new Register();
 const restAuth = new RestAuth();
@@ -9,9 +9,8 @@ const domHelper = new DOMHelper();
 
 const addTodoBtns = document.querySelectorAll('.day__add-todo');
 addTodoBtns.forEach((btn) => {
-  const target = btn.dataset.todoTarget;
-  const newTodoExpiresAt = Date.now() + (btn.dataset.todoTarget === 'tomorrow' ? 86400 : 0) / 1000;
-  btn.addEventListener('click', () => new Todo('', false, newTodoExpiresAt));
+  const renderHookName = btn.dataset.todoTarget;
+  btn.addEventListener('click', () => new NewTodo(renderHookName, btn));
 });
 
 const fetchTodos = (uid) => {
@@ -19,7 +18,7 @@ const fetchTodos = (uid) => {
     const { docs: todos } = await db.collection('todos').where('owner', '==', uid).orderBy('expires_at', 'asc').get();
     todos.forEach((todo) => {
       const { content, done, expires_at: { seconds: expiresAt } } = todo.data();
-      new Todo(content, done, expiresAt);
+      new ExistingTodo(content, done, expiresAt, todo.id);
     });
   };
   const safeFetchTodosAction = Utilities.handleError(fetchTodosAction);

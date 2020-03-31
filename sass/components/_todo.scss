@@ -6,6 +6,10 @@
   border-radius: 10px;
   perspective: 1000px;
 
+  &.done {
+    border: 1px solid var(--color-blue-3-transparent);
+  }
+
   &:not(:last-child) {
     margin-bottom: 3rem;
   }
