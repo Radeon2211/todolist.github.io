@@ -1,13 +1,13 @@
 .day {
   align-self: flex-start;
-  border: 1px solid var(--color-blue-2);
+  border: 2px solid var(--color-blue-2);
   border-radius: 10px;
-  padding: 4rem 2rem 4rem;
   margin: 3rem;
-  position: relative;
-  width: 45rem;
   max-width: 100%;
+  padding: 4rem 2rem 4rem;
+  position: relative;
   text-align: center;
+  width: 45rem;
 
   @include size(phone) {
     width: 100%;
